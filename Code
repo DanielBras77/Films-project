@@ -1,0 +1,65 @@
+import pandas as pd
+from tkinter import *
+
+# Window Configs
+
+window = Tk()  # function to declare the window
+window.geometry("500x500")  # size of our window
+window.title("Films and Series")  # title of our window
+
+icon = PhotoImage(file='Netflix-Logo-2006-337370001.png')
+window.iconphoto(True, icon)
+window.config(bg="white")  # research hex color picker and type the code for the background
+
+# Tilte Configs
+
+# title_photo = PhotoImage(file="th-468574836-removebg-preview.png")
+# resize_title_photo = title_photo.resize((1000, 2000))#resize the image using resize() method
+# resize_title_photo2 = PhotoImage(resize_title_photo)
+label = Label(window,
+              text="Films and Series",
+              font=("Evogria", 30),
+              fg="#EE55FF",
+              bg="white",
+              # image=resize_title_photo2,
+              compound="right"
+              )
+label.place(x=0, y=0)
+
+# Subtitle Configs
+label = Label(window,
+              text="Type a film or series to add to the watchlist: ",
+              font=("Evogria", 9),
+              fg="#7E181E",
+              bg="white",
+              # image=resize_title_photo2,
+              compound="right"
+              )
+label.place(x=8, y=50)
+
+
+class checkbutton(Frame):
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.number = 0
+        self.widgets = []
+        self.grid()
+        self.add()
+
+    def add(self):
+        x = IntVar()
+        self.entry = entry.get()
+        self.entry = Checkbutton(self, text=self.entry, variable=x, onvalue=1, offvalue=0)
+        # insert(self.entry)
+        self.entry.grid()
+        self.widgets.append(entry)
+
+
+number_of_cb = pd.read_json()
+add_button = Button(window, text="Add", command=checkbutton)
+add_button.place(x=135, y=75)
+entry = Entry(window)
+entry.place(x=10, y=80)
+print(number_of_cb)
+
+window.mainloop()  # place window on computer screen
